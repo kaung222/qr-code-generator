@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items : center;
+            min-height: 100vh;
+            width: 100%;
+            flex-direction: column;
+        }
+         
+        /* .container form{
+            padding: 20px;
+            width: 400px;
+            border: 1px solid #ccc;
+        } */
+        .container h3{
+            text-align: center;
+            margin: 20px 0;
+            font-size: 36px;
+        } 
+        .container input{
+            width: 250px;
+            padding: 7px 10px;
+            margin: 20px 0;
+            border: none;
+            outline: none;
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 7px;
+
+        }
+        .container input:focus{
+            border : 1px solid #32a852;
+        }
+        .container button{
+            padding: 7px 20px;
+            background-color: #32a852;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <h3>QR Nae Ment Ml</h3>
+        <input type="text" name="qrInput" id="qrInput" placeholder="Enter text ...">
+        <button type="submit" id="gen-btn">Transform to QR</button>
+        <div class="qr-holder" style="width: 300px;height: 300px; padding: 30px; text-align:center"> 
+            <img src="" id="qr-img" alt="" width="100%">
+        </div>
+   
+    </div>
+
+
+    <script>
+        let qrInput = document.querySelector("#qrInput");
+        let genBtn  =document.querySelector("#gen-btn");
+        let qrImg   = document.querySelector("#qr-img");
+        const qrHolder =document.querySelector(".qr-holder");
+        genBtn.addEventListener("click", ()=>{
+            let qrValue = qrInput.value;
+            // qrHolder.innerHTML = "Genterating , please wait";
+            if(!qrValue) return;
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${qrValue}`;
+        });
+    </script>
+</body>
+</html>
